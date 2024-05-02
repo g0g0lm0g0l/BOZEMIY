@@ -23,39 +23,33 @@ func _physics_process(delta):
 	
 
 func _player_movement(delta):
+	var dir = Vector2.ZERO
+	dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	dir = dir.normalized()
+	var vel = dir * SPEED
+	move_and_collide(vel * delta)
 	if Input.is_action_pressed("up"):
 		current_direction = "up"
 		_play_animation(1)
-		velocity.y = -SPEED
-		velocity.x = 0
 	elif Input.is_action_pressed("down"):
 		current_direction = "down"
-		velocity.y = SPEED
-		velocity.x = 0
+		_play_animation(1)
 	elif Input.is_action_pressed("left"):
 		current_direction = "left"
 		_play_animation(1)
-		velocity.y = 0
-		velocity.x = -SPEED
 	elif Input.is_action_pressed("right"):
 		current_direction = "right"
 		_play_animation(1)
-		velocity.y = 0
-		velocity.x = SPEED
 	elif Input.is_action_pressed("jump"):
 		current_direction = "jump"
 		_play_animation(1)
-		velocity.y = 0
-		velocity.x = 0
 	elif Input.is_action_just_pressed("left_mouse_click_attack"):
 		current_direction = "attack"
 		_play_animation(1)
 		click_position = get_global_mouse_position()
 	else:
 		_play_animation(0)
-		velocity.y = 0
-		velocity.x = 0   
-	move_and_slide()
 	
 	
 func _play_animation(movement):
