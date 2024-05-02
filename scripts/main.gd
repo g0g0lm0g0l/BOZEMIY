@@ -3,8 +3,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var scene_tree = get_tree()
-	scene_tree.change_scene_to_file("res://scenes/player.tscn")
+	var world_scene = load("res://scenes/world.tscn")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
