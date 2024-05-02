@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://bxjbwuio25xut"]
+[gd_scene load_steps=93 format=3 uid="uid://bxjbwuio25xut"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_s8jw1"]
 [ext_resource type="Texture2D" uid="uid://b5vpe8blcl3n6" path="res://assets/graphics/characters/idle_main_chararcter.png" id="3_g7ioh"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dghjhcprt4bto" path="res://assets/graphics/characters/main_character_hurt.png" id="5_u6ijr"]
 [ext_resource type="Texture2D" uid="uid://dvrpgud2hk20t" path="res://assets/graphics/characters/main_character_jump.png" id="6_lge06"]
 [ext_resource type="Texture2D" uid="uid://cmfpt6brfa4we" path="res://assets/graphics/characters/main_character_side_walk.png" id="7_g7qwe"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wahh0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vyjn"]
 atlas = ExtResource("3_g7ioh")
@@ -543,7 +545,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_character_jump",
-"speed": 16.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -633,11 +635,13 @@ up_direction = Vector2(0.99995, -0.0099995)
 script = ExtResource("1_s8jw1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wahh0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, -3)
 sprite_frames = SubResource("SpriteFrames_itjro")
 animation = &"main_character_jump"
-frame_progress = 0.351725
+frame_progress = 0.547628
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
