@@ -11,6 +11,10 @@ config_version=5
 [application]
 
 config/name="BOZIEMIY"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/player.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/graphics/icon.svg"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
