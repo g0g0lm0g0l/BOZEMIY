@@ -640,8 +640,7 @@ shape = SubResource("CapsuleShape2D_wahh0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(9, -3)
 sprite_frames = SubResource("SpriteFrames_itjro")
-animation = &"main_character_jump"
-frame_progress = 0.527056
+animation = &"idle_main_character_front"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
