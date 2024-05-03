@@ -32,10 +32,7 @@ func _player_movement(delta):
 	velocity.x = speed * horizontal_directions
 	#move_and_collide(velocity * delta)
 	move_and_slide()
-	if Input.is_action_pressed("up"):
-		current_direction = "up"
-		_play_animation(1)
-	elif Input.is_action_pressed("down"):
+	if Input.is_action_pressed("down"):
 		current_direction = "down"
 		_play_animation(1)
 	elif Input.is_action_pressed("left"):
@@ -44,7 +41,7 @@ func _player_movement(delta):
 	elif Input.is_action_pressed("right"):
 		current_direction = "right"
 		_play_animation(1)
-	elif Input.is_action_pressed("jump"):
+	elif Input.is_action_pressed("jump") or  Input.is_action_pressed("up"):
 		velocity.y = -jump_force
 		current_direction = "jump"
 		_play_animation(1)
