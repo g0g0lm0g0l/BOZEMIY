@@ -7,10 +7,12 @@ extends CharacterBody2D
 var current_direction = "none"
 var click_position = Vector2()
 var target_position = Vector2()
-
+var animation_player = null
 const GRAVITY = 1000
 
 func _ready():
+	animation_player = $AnimatedSprite2D
+	animation_player.play("idle_main_character_front")
 	set_process_input(true)
 
 
@@ -55,7 +57,7 @@ func _player_movement(delta):
 	
 func _play_animation(movement):
 	var direction = current_direction	
-	var animation_player = $AnimatedSprite2D
+	
 	if direction == "right":
 		if movement == 1:
 			animation_player.flip_h = false
