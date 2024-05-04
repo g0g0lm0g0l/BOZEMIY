@@ -3,17 +3,15 @@ extends CharacterBody2D
 @export var speed = 100
 @export var gravity = 30
 @export var jump_force = 300
+const GRAVITY = 1000
 
 var current_direction = "none"
-var click_position = Vector2()
-var target_position = Vector2()
 var animation_player = null
-const GRAVITY = 1000
+
 
 func _ready():
 	animation_player = $AnimatedSprite2D
 	animation_player.play("idle_main_character_front")
-	set_process_input(true)
 
 
 func _process(delta):
@@ -50,7 +48,6 @@ func _player_movement(delta):
 	elif Input.is_action_just_pressed("left_mouse_click_attack"):
 		current_direction = "attack"
 		_play_animation(1)
-		click_position = get_global_mouse_position()
 	else:
 		_play_animation(0)
 	
