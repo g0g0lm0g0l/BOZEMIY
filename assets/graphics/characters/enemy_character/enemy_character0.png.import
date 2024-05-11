@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvrpgud2hk20t"
-path="res://.godot/imported/main_character_jump.png-7824d7389c94b7a5b91966177b2d5b0f.ctex"
+uid="uid://bc426k6rov7qx"
+path="res://.godot/imported/enemy_character0.png-a65e84e3d23621b7f25da70212ed2ba1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/characters/main_character_jump.png"
-dest_files=["res://.godot/imported/main_character_jump.png-7824d7389c94b7a5b91966177b2d5b0f.ctex"]
+source_file="res://assets/graphics/characters/enemy_character/enemy_character0.png"
+dest_files=["res://.godot/imported/enemy_character0.png-a65e84e3d23621b7f25da70212ed2ba1.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dghjhcprt4bto"
-path="res://.godot/imported/main_character_hurt.png-6c40a707f44527bc76130d953700ecf1.ctex"
+uid="uid://c1l2xfq82jame"
+path="res://.godot/imported/main_character_idle_back_cut.png-4eca2b737889f2d6dc5eeb328dd757e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/characters/main_character_hurt.png"
-dest_files=["res://.godot/imported/main_character_hurt.png-6c40a707f44527bc76130d953700ecf1.ctex"]
+source_file="res://assets/graphics/characters/main_character/main_character_idle_back_cut.png"
+dest_files=["res://.godot/imported/main_character_idle_back_cut.png-4eca2b737889f2d6dc5eeb328dd757e8.ctex"]
 
 [params]
 
