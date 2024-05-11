@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bsfwf8plhspes" path="res://assets/graphics/tilesets/world.png" id="1_4txsg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bekr"]
-size = Vector2(40, 8)
+size = Vector2(52, 8)
 
 [node name="PlatformAnimatableBody2D" type="AnimatableBody2D"]
 

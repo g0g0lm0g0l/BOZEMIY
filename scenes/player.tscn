@@ -7,7 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dvrpgud2hk20t" path="res://assets/graphics/characters/main_character_jump.png" id="6_lge06"]
 [ext_resource type="Texture2D" uid="uid://cmfpt6brfa4we" path="res://assets/graphics/characters/main_character_side_walk.png" id="7_g7qwe"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wahh0"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uo1f7"]
+height = 38.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vyjn"]
 atlas = ExtResource("3_g7ioh")
@@ -636,10 +637,9 @@ up_direction = Vector2(0.99995, -0.0099995)
 script = ExtResource("1_s8jw1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_wahh0")
+shape = SubResource("CapsuleShape2D_uo1f7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(11, -4)
 sprite_frames = SubResource("SpriteFrames_itjro")
 animation = &"idle_main_character_front"
 
