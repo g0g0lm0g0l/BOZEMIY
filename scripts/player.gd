@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 100
+@export var speed = 200
 @export var jump_force = 300.0
 
 var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -20,10 +20,9 @@ func _process(delta):
 		
 		
 func _physics_process(delta):
-	self.velocity.y += GRAVITY * delta
+	velocity.y += GRAVITY * delta
 	_player_movement(delta)
 	move_and_slide()
-	
 	
 func _player_movement(delta):
 	var horizontal_directions = Input.get_axis("left", "right")
@@ -47,7 +46,6 @@ func _player_movement(delta):
 		_play_animation(1)
 	else: 
 		_play_animation(0)
-
 	
 	
 func _play_animation(movement):
