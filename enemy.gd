@@ -26,7 +26,7 @@ func _physics_process(delta):
 		else:
 			animation_enemy.flip_h = true
 		velocity.x = direction * SPEED
+		animation_enemy.play("wakl_enemy_character")
 	else:
-		
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()

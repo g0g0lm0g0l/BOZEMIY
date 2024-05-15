@@ -72,4 +72,5 @@ shape = SubResource("CapsuleShape2D_drfvg")
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_yqlmn")
 animation = &"wakl_enemy_character"
-frame_progress = 0.0816879
+frame = 6
+frame_progress = 0.00258071
