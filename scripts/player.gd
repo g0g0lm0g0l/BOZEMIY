@@ -11,7 +11,6 @@ var attack_timer = 0.0
 var attack_duration = 0.9
 
 
-
 func _ready():
 	animation_player = $AnimatedSprite2D
 	animation_player.play("idle_main_character_front")
@@ -34,7 +33,7 @@ func _physics_process(delta):
 	
 func _player_movement(delta):
 	var horizontal_directions = Input.get_axis("left", "right")
-	velocity.x = speed * horizontal_directions
+	velocity.x = speed * horizontal_directions # move_and_slide() handles frame-rate independence!!!
 	
 	if Input.is_action_just_pressed("left_mouse_click_attack"):
 		animation_player.play("main_character_attack")
@@ -57,3 +56,4 @@ func _player_movement(delta):
 		elif Input.is_action_pressed("jump"):
 			velocity.y = -jump_force
 			animation_player.play("main_character_jump")	
+

@@ -633,6 +633,7 @@ animations = [{
 
 [node name="player" type="CharacterBody2D"]
 z_index = 5
+collision_layer = 3
 up_direction = Vector2(0.99995, -0.0099995)
 script = ExtResource("1_s8jw1")
 
@@ -641,7 +642,8 @@ shape = SubResource("CapsuleShape2D_uo1f7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_itjro")
-animation = &"idle_main_character_front"
+animation = &"main_character_up_and_down"
+frame_progress = 0.216047
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
