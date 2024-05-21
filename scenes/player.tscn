@@ -633,7 +633,7 @@ animations = [{
 
 [node name="player" type="CharacterBody2D"]
 z_index = 5
-collision_layer = 3
+collision_layer = 7
 up_direction = Vector2(0.99995, -0.0099995)
 script = ExtResource("1_s8jw1")
 
@@ -649,3 +649,4 @@ frame_progress = 0.216047
 zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
+limit_bottom = 480

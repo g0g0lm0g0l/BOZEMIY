@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://npg36obj1cff"]
+[gd_scene load_steps=14 format=3 uid="uid://npg36obj1cff"]
 
 [ext_resource type="Texture2D" uid="uid://bsfwf8plhspes" path="res://assets/graphics/tilesets/world.png" id="1_5kopp"]
 [ext_resource type="PackedScene" uid="uid://bxjbwuio25xut" path="res://scenes/player.tscn" id="2_rkcp7"]
 [ext_resource type="PackedScene" uid="uid://bhdubu5sy16ih" path="res://scenes/platform.tscn" id="3_q22rl"]
 [ext_resource type="PackedScene" uid="uid://d0e2fba0vddn8" path="res://scenes/enemy.tscn" id="4_nwrvu"]
+[ext_resource type="PackedScene" uid="uid://y5qp2dre8770" path="res://scenes/fruit.tscn" id="5_bqcve"]
+[ext_resource type="PackedScene" uid="uid://nctrf0o44qs4" path="res://scenes/killzone.tscn" id="6_mwgg3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pfntc"]
 texture = ExtResource("1_5kopp")
@@ -170,6 +172,10 @@ _data = {
 "mave_x": SubResource("Animation_u3jhb")
 }
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_o8o0d"]
+a = Vector2(2051, -13)
+b = Vector2(-800, -4)
+
 [node name="world" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -281,3 +287,23 @@ position = Vector2(1129, 36)
 
 [node name="enemy" parent="." instance=ExtResource("4_nwrvu")]
 position = Vector2(309, 549)
+
+[node name="fruit" parent="." instance=ExtResource("5_bqcve")]
+position = Vector2(201, 496)
+
+[node name="fruit2" parent="." instance=ExtResource("5_bqcve")]
+position = Vector2(295, 469)
+
+[node name="fruit3" parent="." instance=ExtResource("5_bqcve")]
+position = Vector2(313, 385)
+
+[node name="fruit4" parent="." instance=ExtResource("5_bqcve")]
+position = Vector2(144, 418)
+
+[node name="killzone" parent="." instance=ExtResource("6_mwgg3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(3, 665)
+shape = SubResource("SegmentShape2D_o8o0d")
+
+[node name="Platforms" type="Node" parent="."]

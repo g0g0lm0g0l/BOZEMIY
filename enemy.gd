@@ -65,3 +65,7 @@ func _on_area_2d_detection_area_body_entered(body):
 func _on_area_2d_detection_area_body_exited(body):
 	player = null
 	player_chase = false
+
+
+func _on_area_2d_damage_zone_body_exited(body):
+	print("contact with enemy")
