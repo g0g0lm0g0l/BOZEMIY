@@ -307,3 +307,21 @@ position = Vector2(3, 665)
 shape = SubResource("SegmentShape2D_o8o0d")
 
 [node name="Platforms" type="Node" parent="."]
+
+[node name="fruit5" parent="." instance=ExtResource("5_bqcve")]
+position = Vector2(409, 357)
+
+[node name="fruit6" parent="." instance=ExtResource("5_bqcve")]
+position = Vector2(492, 380)
+
+[node name="fruit7" parent="." instance=ExtResource("5_bqcve")]
+position = Vector2(450, 247)
+
+[node name="fruit8" parent="." instance=ExtResource("5_bqcve")]
+position = Vector2(450, 197)
+
+[node name="fruit9" parent="." instance=ExtResource("5_bqcve")]
+position = Vector2(660, 341)
+
+[node name="fruit10" parent="." instance=ExtResource("5_bqcve")]
+position = Vector2(695, 154)

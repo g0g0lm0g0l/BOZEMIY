@@ -1,7 +1,7 @@
 [gd_scene load_steps=47 format=3 uid="uid://y5qp2dre8770"]
 
 [ext_resource type="Texture2D" uid="uid://chym8aj17ckh4" path="res://assets/graphics/tilesets/fruits.png" id="1_f0v0v"]
-[ext_resource type="Script" path="res://scenes/fruit.gd" id="1_hrxb5"]
+[ext_resource type="Script" path="res://scripts/fruit.gd" id="1_t77em"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbsve"]
 atlas = ExtResource("1_f0v0v")
@@ -355,13 +355,12 @@ radius = 11.0
 
 [node name="fruit" type="Area2D"]
 collision_mask = 4
-script = ExtResource("1_hrxb5")
+script = ExtResource("1_t77em")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jaw6v")
-animation = &"dark_red_cherry"
+animation = &"yellow_banana"
 autoplay = "dark_red_cherry"
-frame_progress = 0.858886
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_01exr")

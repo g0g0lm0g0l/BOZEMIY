@@ -648,5 +648,5 @@ frame_progress = 0.216047
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 limit_left = 0
-limit_top = 0
-limit_bottom = 480
+limit_right = 1100
+limit_smoothed = true
