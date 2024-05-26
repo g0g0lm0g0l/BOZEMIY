@@ -15,6 +15,10 @@ run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/graphics/icon.svg"
 
+[autoload]
+
+Main="*res://scripts/main.gd"
+
 [input]
 
 left_mouse_click_attack={

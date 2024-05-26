@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_5vvgg"]
 [ext_resource type="PackedScene" uid="uid://bxjbwuio25xut" path="res://scenes/player.tscn" id="2_rkcp7"]
 [ext_resource type="PackedScene" uid="uid://bhdubu5sy16ih" path="res://scenes/platform.tscn" id="3_q22rl"]
-[ext_resource type="PackedScene" uid="uid://d0e2fba0vddn8" path="res://scenes/enemy.tscn" id="4_nwrvu"]
+[ext_resource type="PackedScene" uid="uid://d0e2fba0vddn8" path="res://scenes/floor_enemy.tscn" id="5_o226y"]
 [ext_resource type="PackedScene" uid="uid://nctrf0o44qs4" path="res://scenes/killzone.tscn" id="6_mwgg3"]
 [ext_resource type="Texture2D" uid="uid://cdpny0vhuadxd" path="res://assets/graphics/background/Purple Nebula/Purple_Nebula_04-1024x1024.png" id="7_5rs52"]
 [ext_resource type="Texture2D" uid="uid://bnnuodbky6jwk" path="res://assets/graphics/background/Purple Nebula/Purple_Nebula_08-1024x1024.png" id="8_xyedw"]
@@ -204,7 +204,7 @@ position = Vector2(26, 557)
 position = Vector2(578, 608)
 shape = SubResource("RectangleShape2D_6hrpw")
 
-[node name="enemy" parent="." instance=ExtResource("4_nwrvu")]
+[node name="enemy" parent="." instance=ExtResource("5_o226y")]
 position = Vector2(309, 549)
 
 [node name="killzone" parent="." instance=ExtResource("6_mwgg3")]

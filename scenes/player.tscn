@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://bxjbwuio25xut"]
+[gd_scene load_steps=94 format=3 uid="uid://bxjbwuio25xut"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_s8jw1"]
 [ext_resource type="Texture2D" uid="uid://b5vpe8blcl3n6" path="res://assets/graphics/characters/main_character/idle_main_chararcter.png" id="2_yi0hd"]
@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dvrpgud2hk20t" path="res://assets/graphics/characters/main_character/main_character_jump.png" id="5_1ke3k"]
 [ext_resource type="Texture2D" uid="uid://cmfpt6brfa4we" path="res://assets/graphics/characters/main_character/main_character_side_walk.png" id="6_5vyql"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uo1f7"]
-radius = 2.0
-height = 40.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_265w5"]
+radius = 5.0
+height = 38.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vyjn"]
 atlas = ExtResource("2_yi0hd")
@@ -632,6 +632,9 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_imm8j"]
+radius = 20.2485
+
 [node name="player" type="CharacterBody2D"]
 z_index = 5
 collision_layer = 7
@@ -639,15 +642,37 @@ up_direction = Vector2(0.99995, -0.0099995)
 script = ExtResource("1_s8jw1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_uo1f7")
+shape = SubResource("CapsuleShape2D_265w5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_itjro")
 animation = &"main_character_up_and_down"
-frame_progress = 0.216047
+frame_progress = 0.718619
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 limit_left = -10
 limit_right = 1100
 limit_smoothed = true
+
+[node name="Area2DHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2DDamageZone" type="CollisionShape2D" parent="Area2DHitbox"]
+shape = SubResource("CircleShape2D_imm8j")
+
+[node name="TimerAttackCoolDowm" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="TimerAttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="LabelHelth" type="Label" parent="."]
+offset_left = -22.0
+offset_top = -35.0
+offset_right = 18.0
+offset_bottom = -12.0
+
+[connection signal="body_entered" from="Area2DHitbox" to="." method="_on_area_2d_hitbox_body_entered"]
+[connection signal="body_exited" from="Area2DHitbox" to="." method="_on_area_2d_hitbox_body_exited"]
+[connection signal="timeout" from="TimerAttackCoolDowm" to="." method="_on_timer_attack_cool_dowm_timeout"]
+[connection signal="timeout" from="TimerAttackTimer" to="." method="_on_timer_attack_timer_timeout"]

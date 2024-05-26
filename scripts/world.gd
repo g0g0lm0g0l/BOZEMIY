@@ -2,7 +2,7 @@ extends Node2D
 
 const PLATFORM_SCENE = preload("res://scenes/platform.tscn")
 const FRUIT = preload("res://scenes/fruit.tscn")
-const ENEMY = preload("res://scenes/enemy.tscn")
+const ENEMY = preload("res://scenes/floor_enemy.tscn")
 
 const PLATFORM_COUNT = 120
 
