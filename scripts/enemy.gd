@@ -13,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	animation_enemy = $AnimatedSprite2D
 
+
 func _physics_process(delta):
 	behave_floor_enemy(delta)
 	move_and_slide()
@@ -65,7 +66,7 @@ func _on_area_2d_detection_area_body_entered(body):
 func _on_area_2d_detection_area_body_exited(body):
 	player = null
 	player_chase = false
-
-
+	
+	
 func _on_area_2d_damage_zone_body_exited(body):
 	print("contact with enemy")

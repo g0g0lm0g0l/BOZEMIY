@@ -8,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cmfpt6brfa4we" path="res://assets/graphics/characters/main_character/main_character_side_walk.png" id="6_5vyql"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uo1f7"]
-height = 38.0
+radius = 2.0
+height = 40.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vyjn"]
 atlas = ExtResource("2_yi0hd")
