@@ -666,7 +666,7 @@ wait_time = 0.5
 [node name="TimerAttackTimer" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="LabelHelth" type="Label" parent="."]
+[node name="LabelHelthBar" type="Label" parent="."]
 offset_left = -22.0
 offset_top = -35.0
 offset_right = 18.0

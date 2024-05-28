@@ -1,8 +1,7 @@
 extends Node
 
 var player_current_attack = false
-var player_helth = 100
-var floor_enemy_helth = 100
+
 
 func _ready():
 	pass

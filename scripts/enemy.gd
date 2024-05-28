@@ -6,9 +6,12 @@ var animation_enemy = null
 var player_chase = false	#cazando
 var player = null
 
+
 var player_inattack_zone = false
 var can_take_damage = true
 @export var one_hit_damage = 50
+
+var floor_enemy_helth = 100
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -18,7 +21,7 @@ func _ready():
 	animation_enemy = $AnimatedSprite2D
 
 func _process(delta):
-	$LabelEnemyHelth.text = str(Main.floor_enemy_helth)
+	$LabelEnemyHelthBar.text = str(floor_enemy_helth)
 
 func _physics_process(delta):
 	behave_floor_enemy(delta)
@@ -82,20 +85,23 @@ func _on_area_2d_damage_zone_body_exited(body):
 	
 func _on_area_2d_hitbox_body_entered(body):
 	if body.has_method("player"):
+		print("LOG: player in attack zone")
 		player_inattack_zone = true
 
 
 func _on_area_2d_hitbox_body_exited(body):
 	if body.has_method("player"):
+		print("LOG: player exited attack zone")
 		player_inattack_zone = false
 
 func treat_with_damage():
 	if player_inattack_zone and Main.player_current_attack and can_take_damage:
-		Main.floor_enemy_helth -=  one_hit_damage
+		floor_enemy_helth -=  one_hit_damage
 		$TimerTakeDamageCooldown.start()
 		can_take_damage = false
-		print("enemy floor_enemy_helth == " + str(Main.floor_enemy_helth))
-		if Main.floor_enemy_helth <= 0:
+		print("enemy floor_enemy_helth == " + str(floor_enemy_helth))
+		if floor_enemy_helth <= 0:
+			Main.player_current_attack = false
 			self.queue_free()
 
 

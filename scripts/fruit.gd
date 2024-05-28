@@ -26,6 +26,6 @@ func _process(delta):
 	pass
 	
 func _on_body_entered(body):
-	Main.player_helth += 10
-	print("+1 fruit, Main.player_helth == " + str(Main.player_helth))
+	body.player_helth += 10
+	print("+1 fruit, player_helth == " + str(body.player_helth))
 	queue_free()

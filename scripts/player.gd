@@ -14,6 +14,8 @@ var animation_player = null
 var enemy_inattack_zone = false
 var enemy_attack_cooldown = true
 var player_alive = true
+var player_helth = 100
+
 
 
 func _ready():
@@ -22,7 +24,7 @@ func _ready():
 	
 	
 func _process(delta):
-	$LabelHelth.text = str(Main.player_helth)
+	$LabelHelthBar.text = str(player_helth)
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
 	if attack_timer > 0.0:
@@ -31,9 +33,9 @@ func _process(delta):
 			animation_player.stop()
 			animation_player.play("idle_main_character_front")
 	enemy_attack()
-	if Main.player_helth <= 0:
+	if player_helth <= 0:
 		player_alive = false
-		Main.player_helth = 0
+		player_helth = 0
 		print("player has been killed")
 		get_tree().reload_current_scene()
 	
@@ -80,10 +82,10 @@ func _on_area_2d_hitbox_body_exited(body):
 		
 func enemy_attack():
 	if enemy_inattack_zone and enemy_attack_cooldown:
-		Main.player_helth -= 20
+		player_helth -= 20
 		enemy_attack_cooldown = false
 		$TimerAttackCoolDowm.start()
-		print(Main.player_helth)
+		print(player_helth)
 	
 	
 func _on_timer_attack_cool_dowm_timeout():

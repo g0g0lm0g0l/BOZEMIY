@@ -165,7 +165,7 @@ shape = SubResource("CapsuleShape2D_siwkh")
 [node name="TimerTakeDamageCooldown" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="LabelEnemyHelth" type="Label" parent="."]
+[node name="LabelEnemyHelthBar" type="Label" parent="."]
 offset_left = -20.0
 offset_top = -41.0
 offset_right = 20.0
