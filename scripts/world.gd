@@ -16,24 +16,33 @@ const RIGHT_LIMIT_X = 1050
 var random_number_generator = RandomNumberGenerator.new()
 
 func _ready():
+	var random_x: float
+	var random_y: float
 	for i in range(0, PLATFORM_COUNT):
-		var random_x: float = random_number_generator.randf_range(LEFT_LIMIT_X + i * 2, RIGHT_LIMIT_X)
-		var random_y: float = BOTTOM_LIMIT_Y - i * INCREASE_Y_DISTANCE_PLATFORMS
+		random_x = random_number_generator.randf_range(LEFT_LIMIT_X + i * 2, RIGHT_LIMIT_X)
+		random_y = BOTTOM_LIMIT_Y - i * INCREASE_Y_DISTANCE_PLATFORMS
 		add_platform(random_x, random_y)
 		if i % 2 == 0:
 			add_friut(random_x, random_y)
+		if i % 10 == 0:
+			add_floor_enemy(random_x, 0)	
 			
 			
-func add_platform(random_x: float,random_y: float):
+func add_platform(position_x: float,position_y: float):
 	var platform_instance = PLATFORM_SCENE.instantiate()
-	platform_instance.position = Vector2(random_x, random_y)	
+	platform_instance.position = Vector2(position_x, position_y)	
 	add_child(platform_instance)
 	
 	
-func add_friut(random_x: float,random_y: float):
+func add_friut(position_x: float,position_y: float):
 	var fruit_instance = FRUIT.instantiate()
-	fruit_instance.position = Vector2(random_x, random_y-15)
+	fruit_instance.position = Vector2(position_x, position_y-15)	
 	add_child(fruit_instance)
+
+func add_floor_enemy(position_x: float,position_y: float):
+	var floor_enem_instance = ENEMY.instantiate()
+	floor_enem_instance.position = Vector2(position_x, position_y)	
+	add_child(floor_enem_instance)
 	
 	
 func _process(delta):
