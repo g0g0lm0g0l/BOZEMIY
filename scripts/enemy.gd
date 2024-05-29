@@ -15,13 +15,26 @@ var floor_enemy_helth = 100
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var random_number_generator = RandomNumberGenerator.new()
+var enemy_aniamtion_names = [
+	"walk_enemy_character",
+	"idle_enemy_character"
+]
 
 
 func _ready():
 	animation_enemy = $AnimatedSprite2D
+	$LabelEnemyHelthBar.text = str(floor_enemy_helth)
+	"""
+		May be used for different animations with the same behave
+	var random_enemy: int= random_number_generator.randf_range(0, len(enemy_aniamtion_names))
+	animation_enemy.play(enemy_aniamtion_names[random_enemy])
+	"""
+	
+
 
 func _process(delta):
-	$LabelEnemyHelthBar.text = str(floor_enemy_helth)
+	pass
 
 func _physics_process(delta):
 	behave_floor_enemy(delta)
@@ -33,15 +46,15 @@ func behave_floor_enemy(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	if player_chase:
+		animation_enemy.play(enemy_aniamtion_names[0])
 		self.position += (player.position - self.position)/SPEED
-		animation_enemy.play("wakl_enemy_character")
 		if (player.position.x - self.position.x) < 0:
 			animation_enemy.flip_h = true
 		else: 
 			animation_enemy.flip_h = false
 	else:
-		animation_enemy.play("idle_enemy_character")
-	
+		#animation_enemy.play("idle_enemy_character")
+		animation_enemy.play(enemy_aniamtion_names[1])
 	
 #TODO: implement another enemy that will fly and attack in the platforms
 #to do so i need just eliminate check is_on_floor(), maybe with simple boolean variable

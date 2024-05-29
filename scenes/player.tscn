@@ -646,8 +646,7 @@ shape = SubResource("CapsuleShape2D_265w5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_itjro")
-animation = &"main_character_up_and_down"
-frame_progress = 0.718619
+animation = &"main_character_hurt"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
