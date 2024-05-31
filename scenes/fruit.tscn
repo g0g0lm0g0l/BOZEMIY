@@ -1,7 +1,8 @@
-[gd_scene load_steps=47 format=3 uid="uid://y5qp2dre8770"]
+[gd_scene load_steps=48 format=3 uid="uid://y5qp2dre8770"]
 
 [ext_resource type="Texture2D" uid="uid://chym8aj17ckh4" path="res://assets/graphics/tilesets/fruits.png" id="1_f0v0v"]
 [ext_resource type="Script" path="res://scripts/fruit.gd" id="1_t77em"]
+[ext_resource type="AudioStream" uid="uid://cn8sd528xbj8j" path="res://assets/music/coin.wav" id="3_kojqo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbsve"]
 atlas = ExtResource("1_f0v0v")
@@ -364,5 +365,8 @@ autoplay = "dark_red_cherry"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_01exr")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kojqo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

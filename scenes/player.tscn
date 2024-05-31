@@ -1,11 +1,111 @@
-[gd_scene load_steps=94 format=3 uid="uid://bxjbwuio25xut"]
+[gd_scene load_steps=94 format=3 uid="uid://dn37rxw2k1rwp"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_s8jw1"]
-[ext_resource type="Texture2D" uid="uid://b5vpe8blcl3n6" path="res://assets/graphics/characters/main_character/idle_main_chararcter.png" id="2_yi0hd"]
-[ext_resource type="Texture2D" uid="uid://bf4831xwi8gfj" path="res://assets/graphics/characters/main_character/main_character_attack.png" id="3_v1oua"]
-[ext_resource type="Texture2D" uid="uid://dghjhcprt4bto" path="res://assets/graphics/characters/main_character/main_character_hurt.png" id="4_4tj3o"]
-[ext_resource type="Texture2D" uid="uid://dvrpgud2hk20t" path="res://assets/graphics/characters/main_character/main_character_jump.png" id="5_1ke3k"]
-[ext_resource type="Texture2D" uid="uid://cmfpt6brfa4we" path="res://assets/graphics/characters/main_character/main_character_side_walk.png" id="6_5vyql"]
+[ext_resource type="Texture2D" uid="uid://b5vpe8blcl3n6" path="res://assets/graphics/characters/random_character/idle_main_chararcter.png" id="2_yi0hd"]
+[ext_resource type="Texture2D" uid="uid://bf4831xwi8gfj" path="res://assets/graphics/characters/random_character/main_character_attack.png" id="3_v1oua"]
+[ext_resource type="Texture2D" uid="uid://dghjhcprt4bto" path="res://assets/graphics/characters/random_character/main_character_hurt.png" id="4_4tj3o"]
+[ext_resource type="Texture2D" uid="uid://dvrpgud2hk20t" path="res://assets/graphics/characters/random_character/main_character_jump.png" id="5_1ke3k"]
+[ext_resource type="Texture2D" uid="uid://cmfpt6brfa4we" path="res://assets/graphics/characters/random_character/main_character_side_walk.png" id="6_5vyql"]
+
+[sub_resource type="GDScript" id="GDScript_17csl"]
+script/source = "extends CharacterBody2D
+
+@export var speed = 200
+@export var jump_force = 300.0
+
+var GRAVITY = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+
+var current_direction = \"none\"
+var animation_player = null
+@export var attack_timer = 0.0
+@export var attack_duration = 0.9
+
+
+var enemy_inattack_zone = false
+var enemy_attack_cooldown = true
+var player_alive = true
+var player_helth = 100
+
+
+func _ready():
+	animation_player = $AnimatedSprite2D
+	animation_player.play(\"idle_main_character_front\")
+	
+	
+func _process(delta):
+	$LabelHelthBar.text = str(player_helth)
+	if Input.is_action_just_pressed(\"quit\"):
+		get_tree().quit()
+	if attack_timer > 0.0:
+		attack_timer -= delta	
+		if attack_timer <= 0.0:
+			animation_player.stop()
+			animation_player.play(\"idle_main_character_front\")
+	enemy_attack()
+	if player_helth <= 0:
+		player_alive = false
+		player_helth = 0
+		print(\"player has been killed\")
+		get_tree().reload_current_scene()
+	
+		
+func _physics_process(delta):
+	velocity.y += GRAVITY * delta
+	_player_movement(delta)
+	move_and_slide()
+	
+func _player_movement(delta):
+	var horizontal_directions = Input.get_axis(\"left\", \"right\")
+	velocity.x = speed * horizontal_directions # move_and_slide() handles frame-rate independence!!!
+	if Input.is_action_just_pressed(\"left_mouse_click_attack\"):
+		animation_player.play(\"main_character_attack\")
+		Main.player_current_attack = true
+		attack_timer = attack_duration		
+	
+	var no_movement_pressed = not (Input.is_action_pressed(\"down\") 
+		or Input.is_action_pressed(\"left\") or Input.is_action_pressed(\"right\") 
+		or Input.is_action_pressed(\"jump\"))	
+	if no_movement_pressed and attack_timer <= 0:
+		animation_player.play(\"idle_main_character_front\")
+	else:
+		if Input.is_action_pressed(\"down\"):
+			animation_player.play(\"main_character_up_and_down\")
+		elif Input.is_action_pressed(\"left\"):
+			animation_player.flip_h = true
+			animation_player.play(\"main_character_side_walk\")
+		elif Input.is_action_pressed(\"right\"):
+			animation_player.flip_h = false
+			animation_player.play(\"main_character_side_walk\")
+		elif Input.is_action_pressed(\"jump\"):
+			velocity.y = -jump_force
+			animation_player.play(\"main_character_jump\")	
+			
+func _on_area_2d_hitbox_body_entered(body):
+	if body.has_method(\"enemy\"):
+		enemy_inattack_zone = true
+
+
+func _on_area_2d_hitbox_body_exited(body):
+	if body.has_method(\"enemy\"):
+		enemy_inattack_zone = false
+		
+func enemy_attack():
+	if enemy_inattack_zone and enemy_attack_cooldown:
+		player_helth -= 20
+		enemy_attack_cooldown = false
+		$TimerAttackCoolDowm.start()
+		print(player_helth)
+	
+	
+func _on_timer_attack_cool_dowm_timeout():
+	_on_timer_attack_timer_timeout
+	
+func _on_timer_attack_timer_timeout():
+	$TimerAttackTimer.stop()
+	Main.player_current_attack = false
+	
+func player():
+	pass
+"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_265w5"]
 radius = 5.0
@@ -639,7 +739,7 @@ radius = 20.2485
 z_index = 5
 collision_layer = 7
 up_direction = Vector2(0.99995, -0.0099995)
-script = ExtResource("1_s8jw1")
+script = SubResource("GDScript_17csl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_265w5")
