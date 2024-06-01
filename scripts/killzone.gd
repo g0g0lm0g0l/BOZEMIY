@@ -15,5 +15,4 @@ func _on_body_entered(body):
 
 
 func _on_timer_timeout():
-	#TODO: implement replay of reload another scene or menu!!!
 	get_tree().reload_current_scene()

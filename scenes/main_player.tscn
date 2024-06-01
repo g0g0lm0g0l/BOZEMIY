@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=3 uid="uid://dphnw6ukvjkv7"]
+[gd_scene load_steps=155 format=3 uid="uid://dphnw6ukvjkv7"]
 
 [ext_resource type="Script" path="res://scripts/main_player.gd" id="1_nnygm"]
 [ext_resource type="Texture2D" uid="uid://4lvwfyagltr2" path="res://assets/graphics/characters/main_player/main_player_1_atk/1_atk_1.png" id="2_bssqe"]
@@ -150,6 +150,7 @@
 [ext_resource type="Texture2D" uid="uid://f5ugw18sg8yr" path="res://assets/graphics/characters/main_player/main_player_take_hit/take_hit_4.png" id="148_eitff"]
 [ext_resource type="Texture2D" uid="uid://ds6yy1n6yrehi" path="res://assets/graphics/characters/main_player/main_player_take_hit/take_hit_5.png" id="149_1c16r"]
 [ext_resource type="Texture2D" uid="uid://bxtxd4204v4xw" path="res://assets/graphics/characters/main_player/main_player_take_hit/take_hit_6.png" id="150_2rlaf"]
+[ext_resource type="AudioStream" uid="uid://cn8sd528xbj8j" path="res://assets/music/coin.wav" id="151_a0ca1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t8tdw"]
 height = 48.0
@@ -706,6 +707,9 @@ offset_left = -20.0
 offset_top = -37.0
 offset_right = 20.0
 offset_bottom = -14.0
+
+[node name="AudioStreamPlayerRecolectProduct" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("151_a0ca1")
 
 [connection signal="body_entered" from="Area2DHitbox" to="." method="_on_area_2d_hitbox_body_entered"]
 [connection signal="body_exited" from="Area2DHitbox" to="." method="_on_area_2d_hitbox_body_exited"]

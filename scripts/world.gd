@@ -4,6 +4,7 @@ const PLATFORM_SCENE = preload("res://scenes/platform.tscn")
 const FRUIT = preload("res://scenes/fruit.tscn")
 const FLOOR_ENEMY = preload("res://scenes/floor_enemy.tscn")
 const FLY_ENEMY = preload("res://scenes/fly_enemy.tscn")
+@onready var area_2d_game_over = $Area2DGameOver
 
 @export var PLATFORM_COUNT = 200
 
@@ -31,7 +32,9 @@ var background_paths = [
 @onready var sprite_2d_layer_2 = $ParallaxBackground/ParallaxLayer2/Sprite2DLayer2
 
 func _ready():
-	generate_platfors()
+	area_2d_game_over.position = Vector2(rng.randi_range(LEFT_LIMIT_X, RIGHT_LIMIT_X),
+		 									BOTTOM_LIMIT_Y - DISTANCE_PLATFORMS*PLATFORM_COUNT)
+	generate_world_elements()
 	generate_floor_enemies()
 	
 			
@@ -39,7 +42,7 @@ func add_child_instance(instance: Node, position_x: float,position_y: float):
 	instance.position = Vector2(position_x, position_y)	
 	add_child(instance)
 	
-func generate_platfors():
+func generate_world_elements():
 	var random_x: float
 	var random_y: float
 	for i in range(0, PLATFORM_COUNT):
@@ -52,7 +55,7 @@ func generate_platfors():
 			add_child_instance(FLOOR_ENEMY.instantiate(), random_x, random_y)
 		if i % 25 == 0:
 			add_child_instance(FLY_ENEMY.instantiate(), random_x, 0)
-
+	
 func generate_floor_enemies():
 	sprite_2d_layer.texture = load(background_paths[rng.randi_range(0, len(background_paths) - 1)])
 	sprite_2d_layer_2.texture = load(background_paths[rng.randi_range(0, len(background_paths) - 1)])
@@ -61,3 +64,10 @@ func generate_floor_enemies():
 func _process(delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
+
+
+
+func _on_area_2d_body_entered(body):
+	if body.has_method("player"):
+		print("GOOD GAME")
+		get_tree().reload_current_scene()

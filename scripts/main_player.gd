@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var jump_force = 500.0
 
 var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var audio_stream_player_recolect_product = $AudioStreamPlayerRecolectProduct
 
 var current_direction = "none"
 var animation_player = null
@@ -64,7 +65,7 @@ func _process(delta):
 		player_helth = 0
 		print("player has been killed")
 		get_tree().reload_current_scene()
-	
+		
 		
 func _physics_process(delta):
 	velocity.y += GRAVITY * delta
