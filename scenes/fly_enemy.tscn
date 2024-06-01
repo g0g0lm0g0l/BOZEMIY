@@ -1,0 +1,168 @@
+[gd_scene load_steps=23 format=3 uid="uid://dbkop0mkcffal"]
+
+[ext_resource type="Script" path="res://scripts/fly_enemy.gd" id="1_oe22g"]
+[ext_resource type="Texture2D" uid="uid://bmj6gpg3kubx8" path="res://assets/graphics/characters/fly_enemy/fly_enemy_flying.png" id="2_vkvif"]
+[ext_resource type="Texture2D" uid="uid://dxgpxnd503pl2" path="res://assets/graphics/characters/fly_enemy/fly_enemy_hurt.png" id="3_e5fl7"]
+[ext_resource type="Texture2D" uid="uid://cvbtgow7arron" path="res://assets/graphics/characters/fly_enemy/fly_enemy_ice.png" id="4_x8gu7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxxq7"]
+atlas = ExtResource("2_vkvif")
+region = Rect2(0, 0, 128, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dj03o"]
+atlas = ExtResource("2_vkvif")
+region = Rect2(128, 0, 128, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tb6k"]
+atlas = ExtResource("2_vkvif")
+region = Rect2(256, 0, 128, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gvew"]
+atlas = ExtResource("2_vkvif")
+region = Rect2(384, 0, 128, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0alow"]
+atlas = ExtResource("2_vkvif")
+region = Rect2(512, 0, 128, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vihed"]
+atlas = ExtResource("2_vkvif")
+region = Rect2(640, 0, 128, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8csl"]
+atlas = ExtResource("3_e5fl7")
+region = Rect2(0, 0, 128, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7chg"]
+atlas = ExtResource("3_e5fl7")
+region = Rect2(128, 0, 128, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4jcp"]
+atlas = ExtResource("4_x8gu7")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsg1p"]
+atlas = ExtResource("4_x8gu7")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw50c"]
+atlas = ExtResource("4_x8gu7")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y7a3"]
+atlas = ExtResource("4_x8gu7")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixcjw"]
+atlas = ExtResource("4_x8gu7")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7x7x"]
+atlas = ExtResource("4_x8gu7")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kk1fg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxxq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dj03o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tb6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gvew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0alow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vihed")
+}],
+"loop": true,
+"name": &"fly_enemy_flying",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8csl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7chg")
+}],
+"loop": true,
+"name": &"fly_enemy_hurt",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4jcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsg1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lw50c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y7a3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixcjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7x7x")
+}],
+"loop": true,
+"name": &"fly_enemy_ice",
+"speed": 14.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7y8ud"]
+radius = 280.303
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ivco"]
+radius = 19.0
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sivk7"]
+radius = 16.0
+height = 38.0
+
+[node name="fly_enemy" type="CharacterBody2D"]
+script = ExtResource("1_oe22g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_kk1fg")
+animation = &"fly_enemy_flying"
+
+[node name="Area2D_Detection_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Detection_area"]
+shape = SubResource("CircleShape2D_7y8ud")
+
+[node name="Area2DHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2DDamageZone" type="CollisionShape2D" parent="Area2DHitbox"]
+shape = SubResource("CapsuleShape2D_1ivco")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_sivk7")
+
+[node name="TimerTakeDamageCooldown" type="Timer" parent="."]
+
+[node name="LabelEnemyHelthBar" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="body_entered" from="Area2D_Detection_area" to="." method="_on_area_2d_detection_area_body_entered"]
+[connection signal="body_exited" from="Area2D_Detection_area" to="." method="_on_area_2d_detection_area_body_exited"]
+[connection signal="body_entered" from="Area2DHitbox" to="." method="_on_area_2d_hitbox_body_entered"]
+[connection signal="body_exited" from="Area2DHitbox" to="." method="_on_area_2d_hitbox_body_exited"]
+[connection signal="timeout" from="TimerTakeDamageCooldown" to="." method="_on_timer_take_damage_cooldown_timeout"]

@@ -2,11 +2,12 @@ extends Node2D
 
 const PLATFORM_SCENE = preload("res://scenes/platform.tscn")
 const FRUIT = preload("res://scenes/fruit.tscn")
-const ENEMY = preload("res://scenes/floor_enemy.tscn")
+const FLOOR_ENEMY = preload("res://scenes/floor_enemy.tscn")
+const FLY_ENEMY = preload("res://scenes/fly_enemy.tscn")
 
 @export var PLATFORM_COUNT = 200
 
-const DISTANCE_PLATFORMS = 13
+@export var DISTANCE_PLATFORMS = 12
 # Watch the logic below
 const TOP_LIMIT_Y = -1000
 const BOTTOM_LIMIT_Y = 550
@@ -30,23 +31,31 @@ var background_paths = [
 @onready var sprite_2d_layer_2 = $ParallaxBackground/ParallaxLayer2/Sprite2DLayer2
 
 func _ready():
-	var random_x: float
-	var random_y: float
-	for i in range(0, PLATFORM_COUNT):
-		random_x = rng.randi_range(LEFT_LIMIT_X + i * 2, RIGHT_LIMIT_X)
-		random_y = BOTTOM_LIMIT_Y - i * DISTANCE_PLATFORMS
-		#add_platform(random_x, random_y)
-		add_child_instance(PLATFORM_SCENE.instantiate(), random_x, random_y)
-		if i % 2 == 0:
-			add_child_instance(FRUIT.instantiate(), random_x, random_y - 15)
-		if i % 12 == 0:
-			add_child_instance(ENEMY.instantiate(), random_x, random_y)
-	sprite_2d_layer.texture = load(background_paths[rng.randi_range(0, len(background_paths) - 1)])
-	sprite_2d_layer_2.texture = load(background_paths[rng.randi_range(0, len(background_paths) - 1)])
+	generate_platfors()
+	generate_floor_enemies()
+	
 			
 func add_child_instance(instance: Node, position_x: float,position_y: float):
 	instance.position = Vector2(position_x, position_y)	
 	add_child(instance)
+	
+func generate_platfors():
+	var random_x: float
+	var random_y: float
+	for i in range(0, PLATFORM_COUNT):
+		random_x = rng.randi_range(LEFT_LIMIT_X, RIGHT_LIMIT_X)
+		random_y = BOTTOM_LIMIT_Y - DISTANCE_PLATFORMS*i
+		add_child_instance(PLATFORM_SCENE.instantiate(), random_x, random_y)
+		if i % 2 == 0:
+			add_child_instance(FRUIT.instantiate(), random_x, random_y - 15)
+		if i % 12 == 0:
+			add_child_instance(FLOOR_ENEMY.instantiate(), random_x, random_y)
+		if i % 25 == 0:
+			add_child_instance(FLY_ENEMY.instantiate(), random_x, 0)
+
+func generate_floor_enemies():
+	sprite_2d_layer.texture = load(background_paths[rng.randi_range(0, len(background_paths) - 1)])
+	sprite_2d_layer_2.texture = load(background_paths[rng.randi_range(0, len(background_paths) - 1)])
 	
 	
 func _process(delta):

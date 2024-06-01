@@ -184,7 +184,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_player_1_atk",
-"speed": 16.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -243,7 +243,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_player_2_atk",
-"speed": 16.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -326,7 +326,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_player_3_atk",
-"speed": 16.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -352,7 +352,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_player_air_atk",
-"speed": 16.0
+"speed": 13.93
 }, {
 "frames": [{
 "duration": 1.0,
@@ -414,7 +414,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_player_death",
-"speed": 16.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -443,7 +443,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_player_defend",
-"speed": 16.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -472,7 +472,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_player_idle",
-"speed": 16.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -495,7 +495,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_player_j_up",
-"speed": 16.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -518,7 +518,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_player_roll",
-"speed": 16.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -547,7 +547,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_player_run",
-"speed": 16.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -642,7 +642,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"main_player_sp_atk",
-"speed": 16.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -679,8 +679,8 @@ shape = SubResource("CapsuleShape2D_t8tdw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -40)
 sprite_frames = SubResource("SpriteFrames_fwlw0")
-animation = &"main_player_take_hit"
-frame_progress = 0.829656
+animation = &"main_player_sp_atk"
+frame_progress = 0.249069
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -702,8 +702,10 @@ wait_time = 0.5
 wait_time = 0.5
 
 [node name="LabelHelthBar" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -20.0
+offset_top = -37.0
+offset_right = 20.0
+offset_bottom = -14.0
 
 [connection signal="body_entered" from="Area2DHitbox" to="." method="_on_area_2d_hitbox_body_entered"]
 [connection signal="body_exited" from="Area2DHitbox" to="." method="_on_area_2d_hitbox_body_exited"]

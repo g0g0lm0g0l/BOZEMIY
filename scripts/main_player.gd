@@ -1,20 +1,22 @@
 extends CharacterBody2D
 
 @export var speed = 200
-@export var jump_force = 400.0
+@export var jump_force = 500.0
 
 var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var current_direction = "none"
 var animation_player = null
-@export var attack_timer = 0.0
+@export var useful_timer = 0.0
 @export var attack_duration = 0.9
+@export var surrender_duration = 1
 
 
 var enemy_inattack_zone = false
 var enemy_attack_cooldown = true
 var player_alive = true
 var count_devil = 0
+var flag_surrender_idle = 0
 @export var player_helth = 100
 
 var rng = RandomNumberGenerator.new()
@@ -23,30 +25,39 @@ var animations = [
 	"main_player_1_atk",	#0
 	"main_player_2_atk",	#1
 	"main_player_3_atk",	#2
-	"main_player_air_atk",	#3
-	"main_player_death",	#4
-	"main_player_defend",	#5
-	"main_player_idle",		#6
-	"main_player_j_up",		#7
-	"main_player_roll",		#8
-	"main_player_run",		#9
-	"main_player_sp_atk",	#10
+	"main_player_sp_atk",   #3
+	"main_player_air_atk",	#4
+	"main_player_death",	#5
+	"main_player_defend",	#6	
+	"main_player_idle",		#7
+	"main_player_j_up",		#8
+	"main_player_roll",		#9
+	"main_player_run",		#10
 	"main_player_take_hit"	#11
 ]
 
 
 func _ready():
+	flag_surrender_idle = 0
 	animation_player = $AnimatedSprite2D
-	animation_player.play(animations[6])
+	animation_player.play(animations[7])
 	
 	
 func _process(delta):
 	$LabelHelthBar.text = str(player_helth)
-	if attack_timer > 0.0:
-		attack_timer -= delta	
-		if attack_timer <= 0.0:
+	if Input.is_action_just_pressed("death"):
+		print("you surrendered")	
+		useful_timer = surrender_duration
+		animation_player.play(animations[5])	
+		flag_surrender_idle = 1
+	if useful_timer > 0.0:
+		useful_timer -= delta	
+		if useful_timer <= 0.0:
 			animation_player.stop()
-			animation_player.play(animations[6])
+			if flag_surrender_idle == 1:
+				get_tree().reload_current_scene()
+			else:
+				animation_player.play(animations[7])
 	enemy_attack()
 	if player_helth <= 0:
 		player_alive = false
@@ -64,39 +75,39 @@ func _player_movement(delta):
 	var horizontal_directions = Input.get_axis("left", "right")
 	velocity.x = speed * horizontal_directions # move_and_slide() handles frame-rate independence!!!
 	if Input.is_action_just_pressed("left_mouse_click_attack"):
-		animation_player.play(animations[rng.randf_range(0, 3)]) #0-3 are different atacks
+		animation_player.play(animations[rng.randf_range(0, 4)]) #0-4 are different atacks
 		Main.player_current_attack = true
-		attack_timer = attack_duration		
-	var count_jump_press: int = 0
+		useful_timer = attack_duration
 	var no_movement_pressed = not (Input.is_action_pressed("down") 
 		or Input.is_action_pressed("left") or Input.is_action_pressed("right") 
 		or Input.is_action_pressed("jump"))	
-	if no_movement_pressed and attack_timer <= 0:
-		animation_player.play(animations[6])
+	if no_movement_pressed and useful_timer <= 0:
+		animation_player.play(animations[7])
 	else:
 		if Input.is_action_pressed("down"):
-			animation_player.play(animations[7])
+			animation_player.play(animations[8])
 		elif Input.is_action_pressed("left"):
 			animation_player.flip_h = true
-			animation_player.play(animations[9])
+			animation_player.play(animations[10])
 		elif Input.is_action_pressed("right"):
 			animation_player.flip_h = false
-			animation_player.play(animations[9])
+			animation_player.play(animations[10])
 		elif Input.is_action_pressed("jump"):
 			if is_on_floor():
 				velocity.y = -jump_force
-				animation_player.play(animations[7])	
+				animation_player.play(animations[8])
+	
 	if Input.is_action_pressed("devil_mode"):
 		if count_devil == 0:
-			print("in if statement")
 			self.jump_force *= 2
+			print("devil_mode enabled")
 			count_devil += 1
 		
 		
 func enemy_attack():
 	if enemy_inattack_zone and enemy_attack_cooldown:
 		animation_player.play(animations[11])
-		attack_timer = attack_duration
+		useful_timer = attack_duration
 		player_helth -= 20
 		enemy_attack_cooldown = false
 		$TimerAttackCoolDowm.start()
