@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://npg36obj1cff"]
+[gd_scene load_steps=28 format=3 uid="uid://npg36obj1cff"]
 
 [ext_resource type="Texture2D" uid="uid://bsfwf8plhspes" path="res://assets/graphics/tilesets/world.png" id="1_5kopp"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_5vvgg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bnnuodbky6jwk" path="res://assets/graphics/background/Purple Nebula/Purple_Nebula_08-1024x1024.png" id="8_xyedw"]
 [ext_resource type="PackedScene" uid="uid://dphnw6ukvjkv7" path="res://scenes/main_player.tscn" id="9_2miii"]
 [ext_resource type="Texture2D" uid="uid://7c0aw5igtum8" path="res://assets/graphics/final_door/final_door.png" id="9_bxnrn"]
+[ext_resource type="AudioStream" uid="uid://kor21kx02clg" path="res://assets/music/Fluffing-a-Duck.mp3" id="10_o2dft"]
 
 [sub_resource type="Animation" id="Animation_mr0xa"]
 length = 0.001
@@ -310,5 +311,26 @@ shape = SubResource("RectangleShape2D_1tl6u")
 sprite_frames = SubResource("SpriteFrames_gokyg")
 animation = &"final_door"
 frame_progress = 0.0939158
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 225.0
+offset_top = 589.0
+offset_right = 980.0
+offset_bottom = 820.0
+theme_override_colors/default_color = Color(0.361443, 0.00059764, 0.48396, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "**********************Welcome to BOZEMIY!!!++++++++++++++++++++++++++++++
+Your mission is to reach the exit door with as many points as possible. 
+You can earn points by collecting items and lose points by facing different enemies.
+- \"q\" or \"esc\"----------------------> equit (exit)
+- \"w\" or \"up\" or \"space\"------> up
+- \"a\" or \"left\"---------------------> left
+- \"s\" or \"down\"------------------> down
+- \"d\" or \"right\"-------------------> right
+- \"secret key\" --------------------> devil mode
+- \"0\" ---------------------------------> surrender"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_o2dft")
 
 [connection signal="body_entered" from="Area2DGameOver" to="." method="_on_area_2d_body_entered"]

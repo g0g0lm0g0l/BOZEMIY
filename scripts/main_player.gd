@@ -5,6 +5,8 @@ extends CharacterBody2D
 
 var GRAVITY = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var audio_stream_player_recolect_product = $AudioStreamPlayerRecolectProduct
+@onready var audio_stream_player_surrender = $AudioStreamPlayerSurrender
+@onready var audio_stream_player = $AudioStreamPlayer
 
 var current_direction = "none"
 var animation_player = null
@@ -47,7 +49,8 @@ func _ready():
 func _process(delta):
 	$LabelHelthBar.text = str(player_helth)
 	if Input.is_action_just_pressed("death"):
-		print("you surrendered")	
+		print("you surrendered")
+		audio_stream_player_surrender.play(0.0)	
 		useful_timer = surrender_duration
 		animation_player.play(animations[5])	
 		flag_surrender_idle = 1
@@ -110,6 +113,7 @@ func enemy_attack():
 		animation_player.play(animations[11])
 		useful_timer = attack_duration
 		player_helth -= 20
+		audio_stream_player.play(0.0)
 		enemy_attack_cooldown = false
 		$TimerAttackCoolDowm.start()
 		print(player_helth)

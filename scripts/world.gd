@@ -5,9 +5,9 @@ const FRUIT = preload("res://scenes/fruit.tscn")
 const FLOOR_ENEMY = preload("res://scenes/floor_enemy.tscn")
 const FLY_ENEMY = preload("res://scenes/fly_enemy.tscn")
 @onready var area_2d_game_over = $Area2DGameOver
+@onready var audio_stream_player = $AudioStreamPlayer
 
 @export var PLATFORM_COUNT = 200
-
 @export var DISTANCE_PLATFORMS = 12
 # Watch the logic below
 const TOP_LIMIT_Y = -1000
@@ -32,8 +32,9 @@ var background_paths = [
 @onready var sprite_2d_layer_2 = $ParallaxBackground/ParallaxLayer2/Sprite2DLayer2
 
 func _ready():
+	audio_stream_player.play(0.0)
 	area_2d_game_over.position = Vector2(rng.randi_range(LEFT_LIMIT_X, RIGHT_LIMIT_X),
-		 									BOTTOM_LIMIT_Y - DISTANCE_PLATFORMS*PLATFORM_COUNT)
+		 								BOTTOM_LIMIT_Y - DISTANCE_PLATFORMS*PLATFORM_COUNT)
 	generate_world_elements()
 	generate_floor_enemies()
 	
@@ -64,9 +65,7 @@ func generate_floor_enemies():
 func _process(delta):
 	if Input.is_action_just_pressed("quit"):
 		get_tree().quit()
-
-
-
+		
 func _on_area_2d_body_entered(body):
 	if body.has_method("player"):
 		print("GOOD GAME")

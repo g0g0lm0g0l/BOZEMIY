@@ -26,6 +26,7 @@ func _process(delta):
 	
 func _on_body_entered(body):
 	body.player_helth += 10
+	body.audio_stream_player_recolect_product.play(0.0)
 	print("+1 fruit, player_helth == " + str(body.player_helth))
 	queue_free()
 

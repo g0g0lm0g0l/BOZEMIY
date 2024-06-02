@@ -8,7 +8,7 @@ var player = null
 
 var player_inattack_zone = false
 var can_take_damage = true
-@export var one_hit_damage = 100
+@export var one_hit_damage = 50
 
 var fly_enemy_helth = 100
 
@@ -71,6 +71,7 @@ func _on_area_2d_hitbox_body_exited(body):
 		
 func treat_with_damage():
 	if player_inattack_zone and Main.player_current_attack and can_take_damage:
+		animation_enemy.play(enemy_animtion_names[1])
 		fly_enemy_helth -=  one_hit_damage
 		$TimerTakeDamageCooldown.start()
 		can_take_damage = false
