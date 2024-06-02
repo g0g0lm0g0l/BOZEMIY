@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://npg36obj1cff"]
+[gd_scene load_steps=29 format=3 uid="uid://npg36obj1cff"]
 
 [ext_resource type="Texture2D" uid="uid://bsfwf8plhspes" path="res://assets/graphics/tilesets/world.png" id="1_5kopp"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_5vvgg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bnnuodbky6jwk" path="res://assets/graphics/background/Purple Nebula/Purple_Nebula_08-1024x1024.png" id="8_xyedw"]
 [ext_resource type="PackedScene" uid="uid://dphnw6ukvjkv7" path="res://scenes/main_player.tscn" id="9_2miii"]
 [ext_resource type="Texture2D" uid="uid://7c0aw5igtum8" path="res://assets/graphics/final_door/final_door.png" id="9_bxnrn"]
+[ext_resource type="Script" path="res://scripts/area2DGameOver.gd" id="9_fdag6"]
 [ext_resource type="AudioStream" uid="uid://kor21kx02clg" path="res://assets/music/Fluffing-a-Duck.mp3" id="10_o2dft"]
 
 [sub_resource type="Animation" id="Animation_mr0xa"]
@@ -302,6 +303,7 @@ texture = ExtResource("8_xyedw")
 position = Vector2(65, 551)
 
 [node name="Area2DGameOver" type="Area2D" parent="."]
+script = ExtResource("9_fdag6")
 
 [node name="CollisionShape2DGameOver" type="CollisionShape2D" parent="Area2DGameOver"]
 position = Vector2(-1, 0.5)
@@ -333,4 +335,10 @@ You can earn points by collecting items and lose points by facing different enem
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_o2dft")
 
-[connection signal="body_entered" from="Area2DGameOver" to="." method="_on_area_2d_body_entered"]
+[node name="LabelGoodGame" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 492.0
+offset_right = 50.0
+offset_bottom = 515.0
+
+[connection signal="body_entered" from="Area2DGameOver" to="." method="_on_area_2d_game_over_body_entered"]

@@ -712,6 +712,7 @@ offset_bottom = -14.0
 
 [node name="AudioStreamPlayerRecolectProduct" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("151_a0ca1")
+volume_db = -5.0
 autoplay = true
 
 [node name="AudioStreamPlayerSurrender" type="AudioStreamPlayer" parent="."]
