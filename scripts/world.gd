@@ -11,6 +11,7 @@ const FLY_ENEMY = preload("res://scenes/fly_enemy.tscn")
 # Onready variables to reference nodes in the scene
 @onready var area_2d_game_over = $Area2DGameOver
 @onready var audio_stream_player = $AudioStreamPlayer
+@onready var timer = $Timer
 
 # Exported variables for editor tweaking
 @export var PLATFORM_COUNT = 200
@@ -108,4 +109,11 @@ func _process(delta):
 func _on_area_2d_game_over_body_entered(body):
 	if body.has_method("player"):
 		Main.label_good_game = str(body.player_helth)
-		get_tree().reload_current_scene()
+		timer.start()
+
+
+func _on_timer_timeout():
+	"""
+	Called when the player reaches the exit door and reloads the scene.
+	"""
+	get_tree().reload_current_scene()
